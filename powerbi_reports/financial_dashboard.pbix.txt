@@ -1,0 +1,14 @@
+
+This is a placeholder for a Power BI report file.
+In a real implementation, this would be a binary .pbix file.
+
+Report: Financial Dashboard
+Created by: Gabriel Demetrios Lafis
+Date: 2025-07-07
+
+Contents:
+- Financial KPIs
+- Revenue Analysis
+- Expense Breakdown
+- Profit Margins
+- Cash Flow Analysis

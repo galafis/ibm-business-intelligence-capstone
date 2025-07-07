@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cognosmodel.xsd">
+  <modelInfo>
+    <name>Sales Analysis Model</name>
+    <description>Framework Manager model for Sales Analysis</description>
+    <version>1.0</version>
+    <author>Gabriel Demetrios Lafis</author>
+    <created>2025-07-07</created>
+  </modelInfo>
+  <dataSource>
+    <name>Data Warehouse</name>
+    <type>ODBC</type>
+    <connection>BusinessIntelligenceDW</connection>
+  </dataSource>
+  <namespace>
+    <name>Sales</name>
+    <description>Sales Analysis Namespace</description>
+    <querySubject>
+      <name>Sales Facts</name>
+      <source>FactSales</source>
+      <queryItem>
+        <name>Sales Amount</name>
+        <source>SalesAmount</source>
+        <dataType>Decimal</dataType>
+      </queryItem>
+      <queryItem>
+        <name>Quantity</name>
+        <source>Quantity</source>
+        <dataType>Integer</dataType>
+      </queryItem>
+      <queryItem>
+        <name>Profit</name>
+        <source>Profit</source>
+        <dataType>Decimal</dataType>
+      </queryItem>
+    </querySubject>
+    <querySubject>
+      <name>Customer Dimension</name>
+      <source>DimCustomer</source>
+      <queryItem>
+        <name>Customer Name</name>
+        <source>CustomerName</source>
+        <dataType>String</dataType>
+      </queryItem>
+      <queryItem>
+        <name>Customer Segment</name>
+        <source>CustomerSegment</source>
+        <dataType>String</dataType>
+      </queryItem>
+      <queryItem>
+        <name>Region</name>
+        <source>Region</source>
+        <dataType>String</dataType>
+      </queryItem>
+    </querySubject>
+    <relationship>
+      <name>Sales to Customer</name>
+      <source>Sales Facts</source>
+      <target>Customer Dimension</target>
+      <keyColumn>
+        <source>CustomerKey</source>
+        <target>CustomerKey</target>
+      </keyColumn>
+    </relationship>
+  </namespace>
+</model>

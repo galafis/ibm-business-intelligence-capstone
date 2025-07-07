@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<workbook>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource name='Business Intelligence DW'>
+      <connection class='sqlserver' dbname='BusinessIntelligenceDW' username='tableau_user' server='bi-server'>
+        <relation name='FactSales' table='[dbo].[FactSales]' type='table'>
+          <relation name='DimDate' table='[dbo].[DimDate]' type='table'>
+            <join type='inner'>
+              <clause type='join'>
+                <expression op='='>
+                  <expression op='[FactSales].[DateKey]' />
+                  <expression op='[DimDate].[DateKey]' />
+                </expression>
+              </clause>
+            </join>
+          </relation>
+        </relation>
+      </connection>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sales Dashboard'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Business Intelligence DW' />
+          </datasources>
+          <datasource-dependencies datasource='Business Intelligence DW'>
+            <column datatype='integer' name='[Year]' role='dimension' type='quantitative' />
+            <column datatype='real' name='[SalesAmount]' role='measure' type='quantitative' />
+            <column-instance column='[Year]' derivation='None' name='[none:Year:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[SalesAmount]' derivation='Sum' name='[sum:SalesAmount:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[Business Intelligence DW].[sum:SalesAmount:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[Business Intelligence DW].[sum:SalesAmount:qk]</rows>
+        <cols>[Business Intelligence DW].[none:Year:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Executive Dashboard'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='3' name='Sales Dashboard' w='98000' x='1000' y='1000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='solid' />
+              <format attr='border-width' value='1' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+</workbook>

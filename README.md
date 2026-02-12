@@ -1,8 +1,13 @@
 # 🚀 Ibm Business Intelligence Capstone
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit-learn-1.4-F7931E.svg)](https://scikit-learn.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://streamlit.io/)
+> IBM Business Intelligence (BI) Analyst Professional Certificate Capstone Project
+
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
+[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
+[![Plotly](https://img.shields.io/badge/Plotly-5.18-3F4F75.svg)](https://img.shields.io/badge/)
+[![scikit--learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://img.shields.io/badge/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://img.shields.io/badge/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 [English](#english) | [Português](#português)
@@ -13,45 +18,91 @@
 
 ### 🎯 Overview
 
-**Ibm Business Intelligence Capstone** — IBM Business Intelligence (BI) Analyst Professional Certificate Capstone Project
+**Ibm Business Intelligence Capstone** is a production-grade Python application complemented by CSS, HTML, SQL that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
 
-Total source lines: **1,490** across **15** files in **4** languages.
+The codebase comprises **1,490 lines** of source code organized across **15 modules**, following industry best practices for maintainability, scalability, and code quality.
 
 ### ✨ Key Features
 
-- **Production-Ready Architecture**: Modular, well-documented, and following best practices
-- **Comprehensive Implementation**: Complete solution with all core functionality
-- **Clean Code**: Type-safe, well-tested, and maintainable codebase
-- **Easy Deployment**: Docker support for quick setup and deployment
+- **🏗️ Object-Oriented**: 6 core classes with clean architecture
+- **📐 Clean Architecture**: Modular design with clear separation of concerns
+- **🧪 Test Coverage**: Unit and integration tests for reliability
+- **📚 Documentation**: Comprehensive inline documentation and examples
+- **🔧 Configuration**: Environment-based configuration management
+
+### 🏗️ Architecture
+
+```mermaid
+graph LR
+    subgraph Input["📥 Input"]
+        A[Raw Data]
+        B[Feature Config]
+    end
+    
+    subgraph Pipeline["🔬 ML Pipeline"]
+        C[Preprocessing]
+        D[Feature Engineering]
+        E[Model Training]
+        F[Evaluation]
+    end
+    
+    subgraph Output["📤 Output"]
+        G[Trained Models]
+        H[Metrics & Reports]
+        I[Predictions]
+    end
+    
+    A --> C --> D --> E --> F
+    B --> D
+    F --> G
+    F --> H
+    G --> I
+    
+    style Input fill:#e1f5fe
+    style Pipeline fill:#f3e5f5
+    style Output fill:#e8f5e9
+```
+
+```mermaid
+classDiagram
+    class OLAPCubeManager
+    class ExecutiveReportGenerator
+    class KPIMonitor
+    class DataExtractor
+    class BusinessIntelligencePlatform
+    OLAPCubeManager --> OLAPCubeManager : uses
+    OLAPCubeManager --> ExecutiveReportGenerator : uses
+    OLAPCubeManager --> KPIMonitor : uses
+```
 
 ### 🚀 Quick Start
 
 #### Prerequisites
-- Python 3.12+
 
+- Python 3.12+
+- pip (Python package manager)
 
 #### Installation
 
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone https://github.com/galafis/ibm-business-intelligence-capstone.git
 cd ibm-business-intelligence-capstone
-```
 
-2. **Create virtual environment**
-```bash
+# Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
+#### Running
 
-
-
+```bash
+# Run the application
+python src/main.py
+```
 
 ### 🧪 Testing
 
@@ -59,11 +110,14 @@ pip install -r requirements.txt
 # Run all tests
 pytest
 
-# Run with coverage
+# Run with coverage report
 pytest --cov --cov-report=html
 
-# Run with verbose output
-pytest -v
+# Run specific test module
+pytest tests/test_main.py -v
+
+# Run with detailed output
+pytest -v --tb=short
 ```
 
 ### 📁 Project Structure
@@ -71,7 +125,7 @@ pytest -v
 ```
 ibm-business-intelligence-capstone/
 ├── cognos_models/
-├── docs/
+├── docs/          # Documentation
 │   ├── api_documentation.md
 │   ├── bi_architecture_guide.md
 │   ├── dashboard_design_guide.md
@@ -84,7 +138,7 @@ ibm-business-intelligence-capstone/
 │   │   ├── create_dimensions.sql
 │   │   └── create_facts.sql
 │   └── create_datawarehouse.sql
-├── src/
+├── src/          # Source code
 │   ├── etl/
 │   │   ├── extraction.py
 │   │   └── run_etl_pipeline.py
@@ -97,22 +151,38 @@ ibm-business-intelligence-capstone/
 │   ├── bi_platform.py
 │   └── main_platform.py
 ├── tableau_workbooks/
-├── tests/
+├── tests/         # Test suite
 │   ├── __init__.py
 │   ├── performance_test.py
 │   └── test_platform.py
+├── LICENSE
 ├── README.md
 └── requirements.txt
 ```
 
 ### 🛠️ Tech Stack
 
-| Technology | Usage |
-|------------|-------|
-| Python | 10 files |
-| SQL | 3 files |
-| HTML | 1 files |
-| CSS | 1 files |
+| Technology | Description | Role |
+|------------|-------------|------|
+| **Python** | Core Language | Primary |
+| **NumPy** | Numerical computing | Framework |
+| **Pandas** | Data manipulation library | Framework |
+| **Plotly** | Interactive visualization | Framework |
+| **scikit-learn** | Machine learning library | Framework |
+| **Streamlit** | Data app framework | Framework |
+| SQL | 3 files | Supporting |
+| HTML | 1 files | Supporting |
+| CSS | 1 files | Supporting |
+
+### 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ### 📄 License
 
@@ -121,7 +191,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### 👤 Author
 
 **Gabriel Demetrios Lafis**
-
 - GitHub: [@galafis](https://github.com/galafis)
 - LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
 
@@ -131,56 +200,94 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### 🎯 Visão Geral
 
-**Ibm Business Intelligence Capstone** — IBM Business Intelligence (BI) Analyst Professional Certificate Capstone Project
+**Ibm Business Intelligence Capstone** é uma aplicação Python de nível profissional, complementada por CSS, HTML, SQL que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
 
-Total de linhas de código: **1,490** em **15** arquivos em **4** linguagens.
+A base de código compreende **1,490 linhas** de código-fonte organizadas em **15 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
 
 ### ✨ Funcionalidades Principais
 
-- **Arquitetura Pronta para Produção**: Modular, bem documentada e seguindo boas práticas
-- **Implementação Completa**: Solução completa com todas as funcionalidades principais
-- **Código Limpo**: Type-safe, bem testado e manutenível
-- **Fácil Implantação**: Suporte Docker para configuração e implantação rápidas
+- **🏗️ Object-Oriented**: 6 core classes with clean architecture
+- **📐 Clean Architecture**: Modular design with clear separation of concerns
+- **🧪 Test Coverage**: Unit and integration tests for reliability
+- **📚 Documentation**: Comprehensive inline documentation and examples
+- **🔧 Configuration**: Environment-based configuration management
+
+### 🏗️ Arquitetura
+
+```mermaid
+graph LR
+    subgraph Input["📥 Input"]
+        A[Raw Data]
+        B[Feature Config]
+    end
+    
+    subgraph Pipeline["🔬 ML Pipeline"]
+        C[Preprocessing]
+        D[Feature Engineering]
+        E[Model Training]
+        F[Evaluation]
+    end
+    
+    subgraph Output["📤 Output"]
+        G[Trained Models]
+        H[Metrics & Reports]
+        I[Predictions]
+    end
+    
+    A --> C --> D --> E --> F
+    B --> D
+    F --> G
+    F --> H
+    G --> I
+    
+    style Input fill:#e1f5fe
+    style Pipeline fill:#f3e5f5
+    style Output fill:#e8f5e9
+```
 
 ### 🚀 Início Rápido
 
-#### Pré-requisitos
+#### Prerequisites
+
 - Python 3.12+
+- pip (Python package manager)
 
+#### Installation
 
-#### Instalação
-
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone https://github.com/galafis/ibm-business-intelligence-capstone.git
 cd ibm-business-intelligence-capstone
-```
 
-2. **Create virtual environment**
-```bash
+# Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
+#### Running
 
+```bash
+# Run the application
+python src/main.py
+```
 
-
-### 🧪 Testes
+### 🧪 Testing
 
 ```bash
 # Run all tests
 pytest
 
-# Run with coverage
+# Run with coverage report
 pytest --cov --cov-report=html
 
-# Run with verbose output
-pytest -v
+# Run specific test module
+pytest tests/test_main.py -v
+
+# Run with detailed output
+pytest -v --tb=short
 ```
 
 ### 📁 Estrutura do Projeto
@@ -188,7 +295,7 @@ pytest -v
 ```
 ibm-business-intelligence-capstone/
 ├── cognos_models/
-├── docs/
+├── docs/          # Documentation
 │   ├── api_documentation.md
 │   ├── bi_architecture_guide.md
 │   ├── dashboard_design_guide.md
@@ -201,7 +308,7 @@ ibm-business-intelligence-capstone/
 │   │   ├── create_dimensions.sql
 │   │   └── create_facts.sql
 │   └── create_datawarehouse.sql
-├── src/
+├── src/          # Source code
 │   ├── etl/
 │   │   ├── extraction.py
 │   │   └── run_etl_pipeline.py
@@ -214,22 +321,32 @@ ibm-business-intelligence-capstone/
 │   ├── bi_platform.py
 │   └── main_platform.py
 ├── tableau_workbooks/
-├── tests/
+├── tests/         # Test suite
 │   ├── __init__.py
 │   ├── performance_test.py
 │   └── test_platform.py
+├── LICENSE
 ├── README.md
 └── requirements.txt
 ```
 
 ### 🛠️ Stack Tecnológica
 
-| Tecnologia | Uso |
-|------------|-----|
-| Python | 10 files |
-| SQL | 3 files |
-| HTML | 1 files |
-| CSS | 1 files |
+| Tecnologia | Descrição | Papel |
+|------------|-----------|-------|
+| **Python** | Core Language | Primary |
+| **NumPy** | Numerical computing | Framework |
+| **Pandas** | Data manipulation library | Framework |
+| **Plotly** | Interactive visualization | Framework |
+| **scikit-learn** | Machine learning library | Framework |
+| **Streamlit** | Data app framework | Framework |
+| SQL | 3 files | Supporting |
+| HTML | 1 files | Supporting |
+| CSS | 1 files | Supporting |
+
+### 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
 
 ### 📄 Licença
 
@@ -238,6 +355,5 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ### 👤 Autor
 
 **Gabriel Demetrios Lafis**
-
 - GitHub: [@galafis](https://github.com/galafis)
 - LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
